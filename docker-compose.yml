@@ -10,21 +10,11 @@ services:
     volumes:
       - ./nginx_conf:/etc/nginx/conf.d
       - static_volume:/home/ganesha/static
+      - ../generated_media:/home/ganesha/generated_media
+      - ../generated_media_test:/home/django_test/generated_media
       - test_static_volume:/home/django_test/static
-    depends_on:
-      - jenkins
-    networks:
-      - prod_network
-      - test_network
-
-  jenkins:
-    image: jenkins/jenkins:lts
-    container_name: jenkins
-    expose:
-      - 8080
-      - 50000
-    volumes:
-      - jenkins_home:/var/jenkins_home
+      - test_media_volume:/home/django_test/media
+      - prod_media_volume:/home/ganesha/media
     networks:
       - prod_network
       - test_network
@@ -34,8 +24,10 @@ volumes:
     external: true
   test_static_volume:
     external: true
-  jenkins_home:
-
+  test_media_volume:
+    external: true
+  prod_media_volume:
+    external: true
 
 networks:
   prod_network:
