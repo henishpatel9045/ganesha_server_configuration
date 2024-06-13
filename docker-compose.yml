@@ -15,7 +15,7 @@ services:
       - test_static_volume:/home/django_test/static
       - test_media_volume:/home/django_test/media
       - prod_media_volume:/home/ganesha/media
-      - /etc/letsencrypt/live:/etc/letsencrypt/live
+      - /etc/letsencrypt:/etc/letsencrypt
     networks:
       - prod_network
       - test_network
